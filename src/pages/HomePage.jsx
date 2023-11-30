@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useTodoContext } from '../contexts/MainContext'
 
 function HomePage() {
+const {todos , getTodos} = useTodoContext()
+
+useEffect(()=>{
+    getTodos()
+},[])
+
   return (
-    <div>HomePage</div>
+    <div>{
+        todos.map((item)=>{
+            return <div key={item.id}>{item.title}</div>
+        })
+    }</div>
   )
 }
 

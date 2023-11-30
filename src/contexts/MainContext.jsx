@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { API } from '../utils/consts'
 
 const todoContext = createContext()
@@ -13,7 +13,7 @@ function MainContext({children}) {
 
     async function getTodos() {
        try {
-        const {data} = axios.get(API)
+        const {data} = await axios.get(API)
         console.log(data);
         setTodos(data)
        } catch (error) {
@@ -21,12 +21,10 @@ function MainContext({children}) {
        }
     }
 
-    useEffect(()=>{
-        getTodos()
-        console.log(todos);
-    },[todos])
-
-    const value = {}
+    const value = {
+        todos,
+        getTodos,
+    }
   return (
     <todoContext.Provider value={value}>{children}</todoContext.Provider>
   )
