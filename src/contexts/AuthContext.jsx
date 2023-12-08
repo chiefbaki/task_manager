@@ -20,6 +20,7 @@ function AuthContext({children}) {
         }
     }
 
+
     const value = {}
   return (
     <authContext.Provider value={value}>{children}</authContext.Provider>

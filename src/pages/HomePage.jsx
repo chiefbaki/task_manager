@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useTodoContext } from '../contexts/MainContext'
+import { Box, Grid } from '@mui/material'
+import TodoItem from '../components/TodoItem'
 
 function HomePage() {
 const {todos , getTodos} = useTodoContext()
@@ -9,12 +11,18 @@ useEffect(()=>{
 },[])
 
   return (
-    <div>{
+    <div className='main_container'>
+    <h1>Todo list</h1>
+    <Box container spacing={2}>
+    {
         todos.map((item)=>{
-            return <div key={item.id}>{item.title}</div>
+            return <TodoItem key={item.id} item={item}/>
         })
-    }</div>
+    }
+    </Box>
+    </div>
   )
 }
 
 export default HomePage
+
