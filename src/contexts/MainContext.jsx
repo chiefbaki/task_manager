@@ -10,16 +10,24 @@ export function useTodoContext() {
 
 function MainContext({children}) {
     const [todos , setTodos] = useState([])
+    const [OneTodo , setOneTodo] = useState(null)
 
     async function getTodos() {
        try {
         const {data} = await axios.get(API)
-        console.log(data);
         setTodos(data)
        } catch (error) {
         console.log(error);
        }
     }
+    async function getOneTodo(id) {
+      try {
+       const {data} = await axios.get(`${API}/${id}`)
+       setOneTodo(data)
+      } catch (error) {
+       console.log(error);
+      }
+   }
 
     async function AddTodo(todo) {
       try {
@@ -59,14 +67,17 @@ function MainContext({children}) {
       //     "completed": true,
       //     "userId": "2",
       //   })
+      // getOneTodo(37)
     },[])
 
     const value = {
         todos,
+        OneTodo,
         getTodos,
         UpdateTodo,
         DeleteTodo,
         AddTodo,
+        getOneTodo
     }
   return (
     <todoContext.Provider value={value}>{children}</todoContext.Provider>
