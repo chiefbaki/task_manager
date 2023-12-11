@@ -1,19 +1,15 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {getAuth} from "firebase/auth"
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCHHKvqpiUYfrhZmm1tI8pqiq5I3K6pQ-U",
-  authDomain: "hackaton3-db4ed.firebaseapp.com",
-  projectId: "hackaton3-db4ed",
-  storageBucket: "hackaton3-db4ed.appspot.com",
-  messagingSenderId: "155400840442",
-  appId: "1:155400840442:web:73947d00c54e690f1fd543",
+  apiKey: "AIzaSyBquYYDcBA-aoFYvh_K36nsSy9iRYovWKY",
+  authDomain: "todo-islam-third-try.firebaseapp.com",
+  projectId: "todo-islam-third-try",
+  storageBucket: "todo-islam-third-try.appspot.com",
+  messagingSenderId: "811081396868",
+  appId: "1:811081396868:web:07880940ddc8db412e08d1",
+  measurementId: "G-GTSSJKVRD0"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+export const auth = getAuth(app)

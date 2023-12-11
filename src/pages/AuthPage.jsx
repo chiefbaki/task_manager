@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -12,34 +10,43 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useAuthContext } from '../contexts/AuthContext';
+import { Navigate } from 'react-router-dom';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function AuthPage() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+const [isLogin , setIsLogin] = React.useState(true)
+const { user, register, login } = useAuthContext();
 
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+
+  if (isLogin) {
+    login(data.get("email"), data.get("password"));
+  } else {
+    register(
+      data.get("email"),
+      data.get("password"),
+
+    );
+    // const newUser = {
+    //   email: data.get("email"),
+    //   name: data.get("displayName"),
+    // };
+    // addUser(newUser);
+    console.log(user);
+  }
+};
+
+// if (user) {
+//   return <Navigate to="/" />;
+// }
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -72,7 +79,7 @@ export default function AuthPage() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+            {isLogin ? "Sign in" : "Sign up"}
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -102,16 +109,22 @@ export default function AuthPage() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                {isLogin ? "Sign In" : "Sign Up"}
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                <Link
+                  onClick={() => setIsLogin((prev) => !prev)}
+                  href="#"
+                  variant="body2"
+                  sx={{ color: "black" }} // Text color for the link
+                >
+                  {isLogin
+                    ? "Don't have an account? Sign Up"
+                    : "Already have an account? Sign In"}
+                </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>
