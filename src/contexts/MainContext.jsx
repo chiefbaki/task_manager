@@ -64,6 +64,9 @@ function MainContext({children}) {
     const value = {
         todos,
         getTodos,
+        UpdateTodo,
+        DeleteTodo,
+        AddTodo,
     }
   return (
     <todoContext.Provider value={value}>{children}</todoContext.Provider>
