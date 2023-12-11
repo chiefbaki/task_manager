@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { API } from '../utils/consts'
 
 const todoContext = createContext()
@@ -20,6 +20,46 @@ function MainContext({children}) {
         console.log(error);
        }
     }
+
+    async function AddTodo(todo) {
+      try {
+        await axios.post(API , todo)
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    async function DeleteTodo(id) {
+      try {
+        await axios.delete(`${API}/${id}`)
+      } catch (e) {
+        console.log(e);
+      } 
+    }
+
+    async function UpdateTodo(id , todo) {
+      try {
+        await axios.patch(`${API}/${id}`, todo)
+      } catch (e) {
+        console.log(e);
+      }
+      
+    }
+
+    useEffect(()=>{
+      // AddTodo({
+      //   title:"test",
+      //   completed:false,
+      //   userId:"1"
+      // })
+      // DeleteTodo(32)
+      // UpdateTodo(31 , 
+      //   {
+      //     "title": "Updated Todo",
+      //     "completed": true,
+      //     "userId": "2",
+      //   })
+    },[])
 
     const value = {
         todos,
