@@ -18,7 +18,7 @@ import {
   // todo -----------------------------------------------------------------------------
   
   function AuthContext({ children }) {
-    const [user, setUser] = useState(true);
+    const [user, setUser] = useState(null);
   
     async function register(email, password, displayName, photoURL) {
       try {
@@ -28,7 +28,7 @@ import {
         console.log(e);
       }
     }
-  
+    console.log(user?.email);
     async function login(email, password) {
       try {
         await signInWithEmailAndPassword(auth, email, password);
@@ -46,6 +46,7 @@ import {
     }
   
     useEffect(() => {
+      // logout()
       onAuthStateChanged(auth, (user) => {
         setUser(user);
       });

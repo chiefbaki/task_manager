@@ -1,4 +1,4 @@
-export const API = 'https://vercel-api-pi-nine.vercel.app/TODOS'
+export const API = 'http://localhost:8000/TODOS'
 
 
 export let ADMINS = ["admin@admin.com"]

@@ -17,11 +17,22 @@ import { useTodoContext } from '../contexts/MainContext';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 
+
 const defaultTheme = createTheme();
 
 export default function AddPage() {
+
+const [state, setstate] = React.useState({
+  title: "",
+  completed: false,
+  userId: "2",
+})
+
 const {AddTodo} = useTodoContext()
 const navigate = useNavigate()
+function handleChange(e) {
+  setstate({...state,title: e.target.value})
+}
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,7 +47,12 @@ const navigate = useNavigate()
         completed: true,
         userId: "2",
       })
-      navigate('/')
+    //  navigate('/')
+    setstate({
+      title: "",
+      completed: false,
+      userId: "2",
+    })
   };
 
   return (
@@ -59,6 +75,8 @@ const navigate = useNavigate()
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
+              onChange={handleChange}
+              value={state.title}
               margin="normal"
               required
               fullWidth

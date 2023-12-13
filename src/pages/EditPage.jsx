@@ -57,7 +57,11 @@ function handleChange(e) {
         completed: true,
         userId: "2",
       })
-      navigate('/')
+      // navigate('/')
+    setFormValue({
+      title: "",
+      
+    })
   };
 
   return (
