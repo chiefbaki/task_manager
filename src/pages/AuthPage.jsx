@@ -41,12 +41,13 @@ const handleSubmit = (e) => {
     // };
     // addUser(newUser);
     console.log(user);
+
   }
 };
 
-// if (user) {
-//   return <Navigate to="/" />;
-// }
+if (user) {
+  return <Navigate to="/" />;
+}
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
