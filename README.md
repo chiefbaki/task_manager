@@ -9,6 +9,7 @@ This project is a task manager for introdunction to web.
 - [Additional Configuration](#additional-configuration)
 - [Scripts](#scripts)
 - [Contributing](#contributing)
+- [Instructions](#instructions)
 
 ## Prerequisites
 
@@ -47,3 +48,10 @@ npm test: Run tests.
 
 ## Contributing
 Feel free to contribute to this project. Fork the repository, make your changes, and submit a pull request.
+
+## Instructions
+
+
+https://github.com/chiefbaki/task_manager/assets/61545789/374ae3cf-15d1-4aeb-9122-4f0237100619
+
+
